@@ -1,0 +1,134 @@
+{
+  "start_balance": 1000.0,
+  "current_balance": 1000.0,
+  "total_pnl": 0.0,
+  "win_rate": 0,
+  "total_trades": 0,
+  "wins": 0,
+  "losses": 0,
+  "best_trade": 0,
+  "worst_trade": 0,
+  "avg_rr": 0,
+  "max_drawdown": 0,
+  "max_drawdown_pct": 0.0,
+  "avg_hold_hours": 0,
+  "start_date": "2026-07-05",
+  "position_size_pct": 20,
+  "risk_per_trade_pct": 2,
+  "equity_curve": [
+    {
+      "day": 1,
+      "value": 1000.0
+    },
+    {
+      "day": 2,
+      "value": 1000.0
+    },
+    {
+      "day": 3,
+      "value": 1000.0
+    },
+    {
+      "day": 4,
+      "value": 1000.0
+    },
+    {
+      "day": 5,
+      "value": 1000.0
+    },
+    {
+      "day": 6,
+      "value": 1000.0
+    },
+    {
+      "day": 7,
+      "value": 1000.0
+    },
+    {
+      "day": 8,
+      "value": 1000.0
+    },
+    {
+      "day": 9,
+      "value": 1000.0
+    },
+    {
+      "day": 10,
+      "value": 1000.0
+    },
+    {
+      "day": 11,
+      "value": 1000.0
+    },
+    {
+      "day": 12,
+      "value": 1000.0
+    },
+    {
+      "day": 13,
+      "value": 1000.0
+    },
+    {
+      "day": 14,
+      "value": 1000.0
+    },
+    {
+      "day": 15,
+      "value": 1000.0
+    },
+    {
+      "day": 16,
+      "value": 1000.0
+    },
+    {
+      "day": 17,
+      "value": 1000.0
+    },
+    {
+      "day": 18,
+      "value": 1000.0
+    }
+  ],
+  "open_positions": [
+    {
+      "pair": "SOLUSDT",
+      "direction": "long",
+      "entry": 79.5,
+      "size": 200.0,
+      "current_price": 81.13,
+      "pnl": 4.1,
+      "stop": 77.5,
+      "target": 84.0,
+      "entry_time": "2026-07-05T09:30:07Z",
+      "signal_id": 1
+    },
+    {
+      "pair": "FETUSDT",
+      "direction": "long",
+      "entry": 0.176,
+      "size": 66.67,
+      "current_price": 0.1759,
+      "pnl": -0.04,
+      "stop": 0.17,
+      "target": 0.188,
+      "entry_time": "2026-07-05T14:19:46Z",
+      "signal_id": 2
+    },
+    {
+      "pair": "SUIUSDT",
+      "direction": "long",
+      "entry": 0.742,
+      "size": 66.67,
+      "current_price": 0.752,
+      "pnl": 0.9,
+      "stop": 0.71,
+      "target": 0.77,
+      "entry_time": "2026-07-05T14:19:46Z",
+      "signal_id": 6
+    }
+  ],
+  "trade_history": [],
+  "tp_hit": 0,
+  "sl_hit": 0,
+  "failed": 0
+}
