@@ -1,0 +1,60 @@
+{
+  "daily": [
+    {
+      "date": "2026-07-05",
+      "title": "BTC Holds $62K — Alts Show Oversold Bounce Setup",
+      "sections": [
+        {
+          "heading": "Market Overview",
+          "content": "BTC is holding above $62,000 after triggering a 1h buy signal at $62,740 (SL $62,308, TP $63,389, R:R 1.5:1). The broader market is recovering from June's correction. Altcoin Season Index sits at 49/100 — right on the borderline between Bitcoin Season and Altcoin Season. Fear & Greed at 19 (Extreme Fear), historically a contrarian accumulation zone."
+        },
+        {
+          "heading": "BTC Dominance Watch",
+          "content": "BTC dominance is testing critical support at 57-59% after breaking down from a multi-year rising channel. A breakdown below 57% could signal the start of a sustained altcoin season. Watch this level closely — it's the single most important macro signal right now."
+        },
+        {
+          "heading": "Key Levels",
+          "content": "BTC: Support $62,300 | Resistance $63,400. A clean break above $63,400 opens path to $65,000. Failure to hold $62,300 could retest $60,000."
+        },
+        {
+          "heading": "Volume Note",
+          "content": "Volume across the board is dry at 0.3-0.5x average. Light sizing is advised — entries may take time to fill in low-liquidity conditions. The next major volume catalyst could be US session open."
+        },
+        {
+          "heading": "Watchlist",
+          "content": "SOL, FET, AVAX showing deeply oversold 1h RSIs (23.8, 24.5, 30.9 respectively). These are prime bounce candidates if BTC maintains support. INJ and SUI also within value area with oversold 1h readings."
+        }
+      ]
+    }
+  ],
+  "weekly": [
+    {
+      "week": "W26",
+      "year": 2026,
+      "date_range": "June 29 — July 5, 2026",
+      "title": "Market Recovers from June Selloff — Rotation Building",
+      "sections": [
+        {
+          "heading": "Weekly Performance",
+          "content": "BTC: +3.2% — recovered from June low of $58,200 to current $62,740. ETH: +1.8% — lagging but holding structure. Top performers: ADA (+7.06%), BCH (+4.98%), ETHFI (+12.25%). The recovery is broad but low-volume, suggesting institutional accumulation rather than retail FOMO."
+        },
+        {
+          "heading": "Macro Context",
+          "content": "The broader macro environment remains challenging. Hawkish Fed stance, geopolitical tensions, and record ETF outflows drove June's correction. However, Extreme Fear readings (Fear & Greed at 19) have historically preceded significant market reversals. BTC dominance breaking down from its multi-year channel is the most notable technical development this week."
+        },
+        {
+          "heading": "Sector Rotation",
+          "content": "AI tokens showing relative strength despite the downturn. FET has held structure better than most alts. Layer 1s (ADA, SOL) leading the recovery bounce. DeFi tokens lagging — not yet participating. Watch for rotation from BTC dominance into large-cap alts first, then mid-caps."
+        },
+        {
+          "heading": "Week Ahead",
+          "content": "Key levels to watch: BTC $62,300 support and $63,400 resistance. A breakout above $63,400 with volume would be strongly bullish. The altcoin season index at 49 makes this a pivotal week — a push above 50 would confirm rotation into alts. Watch for US economic data mid-week that could drive volatility."
+        },
+        {
+          "heading": "Positioning",
+          "content": "Our Hermes Portfolio started with $1,000 this week and closed at $1,087 (+8.74%). 4 trades, 3 wins, 1 loss (75% win rate). Best trade: SOL long +$52.10. Current open position: SOLUSDT long at $79.50, currently +$2.54. Light sizing (20% per trade) appropriate for current volume conditions."
+        }
+      ]
+    }
+  ]
+}
