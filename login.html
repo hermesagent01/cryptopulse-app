@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Login — CryptoPulse</title><meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#000;color:#d0d0d0;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;-webkit-font-smoothing:antialiased}
+.bo{position:fixed;border-radius:50%;filter:blur(120px);opacity:.05;pointer-events:none;animation:ob 16s ease-in-out infinite}.bo:nth-child(1){width:600px;height:600px;background:radial-gradient(circle,#c0c0c0,transparent);top:-200px;right:-100px}.bo:nth-child(2){width:400px;height:400px;background:radial-gradient(circle,#808080,transparent);bottom:-100px;left:-100px;animation-delay:-6s}@keyframes ob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+.mesh{position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(192,192,192,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(192,192,192,.012) 1px,transparent 1px);background-size:60px 60px}
+.wrap{position:relative;z-index:1;width:100%;max-width:380px;padding:20px}
+.logo{text-align:center;margin-bottom:28px;font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,#c0c0c0,#fff,#909090);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gs 5s ease infinite}.logo span{-webkit-text-fill-color:#909090;opacity:.7}@keyframes gs{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.card{background:rgba(10,10,10,.85);backdrop-filter:blur(16px);border-radius:18px;padding:24px;position:relative;overflow:hidden}.card::before{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(135deg,#c0c0c0,#303030,#909090,#c0c0c0);background-size:400% 400%;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:gbs 4s linear infinite;pointer-events:none}@keyframes gbs{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+h2{font-size:1rem;font-weight:800;color:#fff;margin-bottom:3px;letter-spacing:-.02em}.sub{font-size:.65rem;color:rgba(255,255,255,.18);margin-bottom:20px}
+.field{margin-bottom:14px}.field label{display:block;font-size:.55rem;font-weight:600;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.field input{width:100%;padding:11px 13px;background:rgba(255,255,255,.03);border:1px solid rgba(192,192,192,.08);border-radius:12px;color:#fff;font-family:inherit;font-size:.78rem;outline:none;transition:border-color .2s}.field input:focus{border-color:rgba(192,192,192,.25)}.field input::placeholder{color:rgba(255,255,255,.12)}
+.btn{width:100%;padding:12px;border:1px solid rgba(192,192,192,.18);border-radius:100px;background:rgba(192,192,192,.06);color:#fff;font-weight:700;font-size:.75rem;cursor:pointer;font-family:inherit;transition:all .2s;margin-top:6px}.btn:hover{background:rgba(192,192,192,.12);border-color:rgba(192,192,192,.3)}.btn:active{transform:scale(.98)}
+.err{color:#ef4444;font-size:.6rem;margin-top:6px;display:none;text-align:center}
+.switch{font-size:.6rem;color:rgba(255,255,255,.18);text-align:center;margin-top:14px;cursor:pointer}.switch:hover{color:rgba(255,255,255,.45)}
+.sub2{text-align:center;font-size:.55rem;color:rgba(255,255,255,.1);margin-top:20px;letter-spacing:.06em}
+</style></head><body>
+<div class="bo"></div><div class="bo"></div><div class="mesh"></div>
+<div class="wrap">
+<div class="logo">CRYPTO<span>PULSE</span></div>
+<div class="card">
+<div id="lf"><h2>Welcome back</h2><p class="sub">Sign in to access your signals</p>
+<div class="field"><label>Username</label><input type="text" id="lu" placeholder="Enter username" autocomplete="username"></div>
+<div class="field"><label>Password</label><input type="password" id="lp" placeholder="Enter password" autocomplete="current-password"></div>
+<div class="err" id="le"></div>
+<button class="btn" onclick="doLogin()">Sign In</button>
+<div class="switch" onclick="showReg()">Don't have an account? Register</div></div>
+<div id="rf" style="display:none"><h2>Create account</h2><p class="sub">Join CryptoPulse signal intelligence</p>
+<div class="field"><label>Username</label><input type="text" id="ru" placeholder="Choose a username" autocomplete="username"></div>
+<div class="field"><label>Password</label><input type="password" id="rp" placeholder="Min 6 characters" autocomplete="new-password"></div>
+<div class="err" id="re"></div>
+<button class="btn" onclick="doReg()">Create Account</button>
+<div class="switch" onclick="showLog()">Already have an account? Sign in</div></div>
+</div><div class="sub2">Signal Intelligence · Not financial advice</div></div>
+<script>
+var API=location.hostname==='localhost'?'http://localhost:8000':'';
+function showLog(){document.getElementById('lf').style.display='block';document.getElementById('rf').style.display='none'}
+function showReg(){document.getElementById('lf').style.display='none';document.getElementById('rf').style.display='block'}
+if(localStorage.getItem('cp_token'))location.href='signals.html';
+function doLogin(){var u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value,e=document.getElementById('le');e.style.display='none';if(!u||!p){e.textContent='Required';e.style.display='block';return}
+fetch(API+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})}).then(function(r){return r.json().then(function(d){return{s:r.status,d:d}})}).then(function(r){if(r.s===200&&r.d.token){localStorage.setItem('cp_token',r.d.token);location.href='signals.html'}else{e.textContent=r.d.detail||'Failed';e.style.display='block'}}).catch(function(){e.textContent='Connection failed';e.style.display='block'})}
+function doReg(){var u=document.getElementById('ru').value.trim(),p=document.getElementById('rp').value,e=document.getElementById('re');e.style.display='none';if(!u||!p){e.textContent='Required';e.style.display='block';return}if(p.length<6){e.textContent='Min 6 chars';e.style.display='block';return}
+fetch(API+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})}).then(function(r){return r.json().then(function(d){return{s:r.status,d:d}})}).then(function(r){if(r.s===200&&r.d.token){localStorage.setItem('cp_token',r.d.token);location.href='signals.html'}else{e.textContent=r.d.detail||'Failed';e.style.display='block'}}).catch(function(){e.textContent='Connection failed';e.style.display='block'})}
+document.getElementById('lp').addEventListener('keypress',function(e){if(e.key==='Enter')doLogin()});
+document.getElementById('rp').addEventListener('keypress',function(e){if(e.key==='Enter')doReg()});
+</script></body></html>
