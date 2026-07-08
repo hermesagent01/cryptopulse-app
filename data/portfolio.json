@@ -1,13 +1,13 @@
 {
   "start_balance": 1000.0,
-  "current_balance": 1000.0,
-  "total_pnl": 0.0,
+  "current_balance": 989.82,
+  "total_pnl": -10.18,
   "win_rate": 0,
-  "total_trades": 0,
+  "total_trades": 3,
   "wins": 0,
-  "losses": 0,
-  "best_trade": 0,
-  "worst_trade": 0,
+  "losses": 3,
+  "best_trade": -2.27,
+  "worst_trade": -5.03,
   "avg_rr": 0,
   "max_drawdown": 0,
   "max_drawdown_pct": 0.0,
@@ -87,48 +87,74 @@
     {
       "day": 18,
       "value": 1000.0
+    },
+    {
+      "day": 19,
+      "value": 989.82
     }
   ],
   "open_positions": [
     {
+      "pair": "AVAXUSDT",
+      "direction": "long",
+      "entry": 6.78,
+      "size": 65.99,
+      "current_price": 6.454,
+      "pnl": 0,
+      "stop": 6.5,
+      "target": 7.0,
+      "entry_time": "2026-07-08T18:46:30Z",
+      "signal_id": 3
+    },
+    {
+      "pair": "INJUSDT",
+      "direction": "long",
+      "entry": 4.68,
+      "size": 65.99,
+      "current_price": 4.626,
+      "pnl": 0,
+      "stop": 4.5,
+      "target": 4.88,
+      "entry_time": "2026-07-08T18:46:30Z",
+      "signal_id": 5
+    }
+  ],
+  "trade_history": [
+    {
       "pair": "SOLUSDT",
       "direction": "long",
       "entry": 79.5,
-      "size": 200.0,
-      "current_price": 81.13,
-      "pnl": 4.1,
-      "stop": 77.5,
-      "target": 84.0,
-      "entry_time": "2026-07-05T09:30:07Z",
-      "signal_id": 1
+      "exit": 77.5,
+      "pnl": -5.03,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
     },
     {
       "pair": "FETUSDT",
       "direction": "long",
       "entry": 0.176,
-      "size": 66.67,
-      "current_price": 0.1759,
-      "pnl": -0.04,
-      "stop": 0.17,
-      "target": 0.188,
-      "entry_time": "2026-07-05T14:19:46Z",
-      "signal_id": 2
+      "exit": 0.17,
+      "pnl": -2.27,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
     },
     {
       "pair": "SUIUSDT",
       "direction": "long",
       "entry": 0.742,
-      "size": 66.67,
-      "current_price": 0.752,
-      "pnl": 0.9,
-      "stop": 0.71,
-      "target": 0.77,
-      "entry_time": "2026-07-05T14:19:46Z",
-      "signal_id": 6
+      "exit": 0.71,
+      "pnl": -2.88,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
     }
   ],
-  "trade_history": [],
   "tp_hit": 0,
-  "sl_hit": 0,
+  "sl_hit": 3,
   "failed": 0
 }

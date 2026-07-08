@@ -13,8 +13,8 @@
     "rr": 2.2,
     "reason": "RSI 23.8 \u00b7 Oversold bounce",
     "timestamp": "2026-07-05T06:00:00Z",
-    "active": true,
-    "current_price": 81.13
+    "active": false,
+    "current_price": 77.05
   },
   {
     "id": 2,
@@ -30,8 +30,8 @@
     "rr": 2.0,
     "reason": "RSI 24.5 \u00b7 Oversold reversal",
     "timestamp": "2026-07-05T06:00:00Z",
-    "active": true,
-    "current_price": 0.1759
+    "active": false,
+    "current_price": 0.1582
   },
   {
     "id": 3,
@@ -48,7 +48,7 @@
     "reason": "RSI 30.9 \u00b7 VA discount entry",
     "timestamp": "2026-07-05T06:00:00Z",
     "active": true,
-    "current_price": 6.89
+    "current_price": 6.454
   },
   {
     "id": 4,
@@ -64,7 +64,7 @@
     "reason": "VAH rejection \u00b7 Extended",
     "timestamp": "2026-07-05T06:00:00Z",
     "active": false,
-    "current_price": 62712.0
+    "current_price": 62143.55
   },
   {
     "id": 5,
@@ -80,7 +80,7 @@
     "reason": "RSI 27.3 \u00b7 Oversold bounce",
     "timestamp": "2026-07-05T06:00:00Z",
     "active": true,
-    "current_price": 4.655
+    "current_price": 4.626
   },
   {
     "id": 6,
@@ -95,7 +95,7 @@
     "rr": 1.9,
     "reason": "Value zone bounce",
     "timestamp": "2026-07-05T06:00:00Z",
-    "active": true,
-    "current_price": 0.752
+    "active": false,
+    "current_price": 0.71
   }
 ]

@@ -1,16 +1,50 @@
 {
-  "total_trades": 0,
+  "total_trades": 3,
   "tp_hit": 0,
-  "sl_hit": 0,
+  "sl_hit": 3,
   "failed": 0,
   "win_rate": 0,
   "wins": 0,
-  "losses": 0,
-  "total_pnl": 0.0,
-  "best_trade": 0,
-  "worst_trade": 0,
-  "current_balance": 1000.0,
+  "losses": 3,
+  "total_pnl": -10.18,
+  "best_trade": -2.27,
+  "worst_trade": -5.03,
+  "current_balance": 989.82,
   "start_balance": 1000.0,
-  "open_positions": 3,
-  "last_trades": []
+  "open_positions": 2,
+  "last_trades": [
+    {
+      "pair": "SOLUSDT",
+      "direction": "long",
+      "entry": 79.5,
+      "exit": 77.5,
+      "pnl": -5.03,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
+    },
+    {
+      "pair": "FETUSDT",
+      "direction": "long",
+      "entry": 0.176,
+      "exit": 0.17,
+      "pnl": -2.27,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
+    },
+    {
+      "pair": "SUIUSDT",
+      "direction": "long",
+      "entry": 0.742,
+      "exit": 0.71,
+      "pnl": -2.88,
+      "rr": 1.0,
+      "type": "SL",
+      "status": "loss",
+      "closed_at": "2026-07-08T18:46:30Z"
+    }
+  ]
 }
