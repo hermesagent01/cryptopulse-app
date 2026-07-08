@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>CryptoPulse — Mockup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cyan:#06b6d4;--cyan-dim:#0891b2;--cyan-glow:rgba(6,182,212,.15);--bg:#0b1120;--card:#131c2e;--card-alt:#0f1828;--hover:#1a2740;--border:rgba(148,163,184,.10);--dim:#94a3b8;--muted:#64748b;--green:#22c55e;--red:#ef4444;--gold:#eab308}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:#e2e8f0;min-height:100vh;padding-bottom:84px}
+.font-mono{font-family:'JetBrains Mono',monospace}
+.accent{color:var(--cyan)}
+.buy{color:var(--green)} .sell{color:var(--red)} .neutral{color:var(--gold)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:1rem;position:relative;overflow:hidden;transition:all .25s}
+.card:hover{transform:translateY(-3px);border-color:rgba(6,182,212,.2);box-shadow:0 16px 36px -12px rgba(0,0,0,.6)}
+.acc-bar{height:3px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.ticker{overflow:hidden;white-space:nowrap;background:rgba(19,28,46,.7);border-bottom:1px solid var(--border)}
+.ticker-i{display:inline-flex;gap:2.5rem;animation:scroll 40s linear infinite;padding:.6rem 0}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.chip{padding:.35rem .8rem;border-radius:9999px;font-size:.78rem;font-weight:600;border:1px solid var(--border);color:var(--dim);cursor:pointer;background:var(--card)}
+.chip.act{background:rgba(6,182,212,.12);color:var(--cyan);border-color:rgba(6,182,212,.3)}
+.btn{background:var(--cyan);color:#04222a;font-weight:700;border:none;border-radius:.6rem;padding:.55rem 1rem;cursor:pointer;font-size:.85rem}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--dim)}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:rgba(11,17,32,.96);border-top:1px solid var(--border);backdrop-filter:blur(12px);z-index:50}
+.nav a{flex:1;text-align:center;padding:9px 0;font-size:.62rem;font-weight:500;color:var(--muted);text-decoration:none}
+.nav a.act{color:var(--cyan)} .nav a .ico{display:block;font-size:1.15rem;margin-bottom:2px}
+.sec{display:none}.sec.act{display:block}
+.mock-flag{position:fixed;top:10px;right:10px;z-index:60;background:rgba(234,179,8,.15);color:var(--gold);border:1px solid rgba(234,179,8,.4);padding:.3rem .7rem;border-radius:9999px;font-size:.7rem;font-weight:700;letter-spacing:.05em}
+.pill{display:inline-flex;gap:4px;align-items:center;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:600}
+.pill.buy{background:rgba(34,197,94,.12)} .pill.sell{background:rgba(239,68,68,.12)} .pill.neutral{background:rgba(234,179,8,.12)}
+.stat{font-family:'JetBrains Mono',monospace;font-weight:700}
+.bar{height:6px;border-radius:9999px;background:#1e293b;overflow:hidden}
+.bar>div{height:100%;background:linear-gradient(90deg,var(--cyan),var(--cyan-dim))}
+.streak-dot{width:22px;height:22px;border-radius:6px;background:#1e293b;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem}
+.streak-dot.on{background:var(--cyan);color:#04222a}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:70;padding:1rem}
+.modal-bg.act{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:1rem;max-width:440px;width:100%;max-height:86vh;overflow:auto;padding:1.25rem}
+</style>
+</head>
+<body data-page="signals">
+
+<div class="mock-flag">⚠ MOCKUP — FAKE DATA</div>
+
+<!-- Header -->
+<header style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid var(--border)">
+  <div class="font-mono" style="font-weight:800;font-size:1.2rem;letter-spacing:.02em">CRYPTO<span class="accent">PULSE</span></div>
+  <div style="font-size:.75rem;color:var(--muted)" id="clk">— UTC</div>
+</header>
+
+<!-- Ticker -->
+<div class="ticker"><div class="ticker-i" id="tk"></div></div>
+
+<!-- ============ SIGNALS ============ -->
+<section class="sec act" id="sec-signals" style="padding:1.25rem;max-width:980px;margin:0 auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.6rem">
+    <h2 style="font-size:1.3rem;font-weight:700">Live Signals</h2>
+    <div style="display:flex;gap:.5rem">
+      <span class="chip act" onclick="filt(this,'ALL')">ALL</span>
+      <span class="chip" onclick="filt(this,'BUY')">BUY</span>
+      <span class="chip" onclick="filt(this,'SELL')">SELL</span>
+    </div>
+  </div>
+  <div id="sigGrid" style="display:grid;gap:.9rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
+</section>
+
+<!-- ============ TA ============ -->
+<section class="sec" id="sec-ta" style="padding:1.25rem;max-width:980px;margin:0 auto">
+  <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem">TA Dashboard</h2>
+  <div id="taGrid" style="display:grid;gap:.8rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="sec" id="sec-edu" style="padding:1.25rem;max-width:980px;margin:0 auto">
+  <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:.4rem">Education</h2>
+  <div class="card" style="padding:1rem;margin-bottom:1rem">
+    <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--dim);margin-bottom:.5rem">
+      <span>Level 4 · <span class="accent">Trader</span></span><span class="stat">1,240 / 2,000 XP</span>
+    </div>
+    <div class="bar"><div style="width:62%"></div></div>
+  </div>
+  <div id="eduGrid" style="display:grid;gap:.8rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))"></div>
+</section>
+
+<!-- ============ PROFILE ============ -->
+<section class="sec" id="sec-profile" style="padding:1.25rem;max-width:760px;margin:0 auto">
+  <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem">Profile</h2>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="display:flex;gap:1rem;align-items:center">
+      <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.4rem;color:#04222a">A</div>
+      <div><div style="font-weight:700;font-size:1.05rem">@amanb</div>
+        <div style="font-size:.78rem;color:var(--dim)">Lv 4 Trader · 1,240 XP · 73% WR</div></div>
+      <button class="btn" style="margin-left:auto" onclick="checkin()">✓ Check-in</button>
+    </div>
+  </div>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="font-size:.8rem;color:var(--dim);margin-bottom:.6rem">Check-in streak — 12 days</div>
+    <div id="streak" style="display:flex;gap:5px;flex-wrap:wrap"></div>
+  </div>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="font-weight:600;margin-bottom:.6rem">Badges</div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+      <span class="pill buy">🎯 First Trade</span><span class="pill buy">🔥 7-day Streak</span>
+      <span class="pill neutral">📚 Scholar</span><span class="pill neutral">🧠 TA Pro</span>
+    </div>
+  </div>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="font-weight:600;margin-bottom:.6rem">Watchlist</div>
+    <div class="font-mono" style="font-size:.9rem;color:var(--dim)">BTCUSDT · ETHUSDT · SOLUSDT · SUIUSDT</div>
+  </div>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="font-weight:600;margin-bottom:.6rem">Promo Code</div>
+    <div style="display:flex;gap:.5rem">
+      <input placeholder="enter code" style="flex:1;background:var(--card-alt);border:1px solid var(--border);border-radius:.6rem;padding:.55rem .8rem;color:#e2e8f0;font-size:.85rem" value="PULSE50">
+      <button class="btn" onclick="alert('Mockup: would unlock Wallet Roaster')">Unlock</button>
+    </div>
+    <div style="font-size:.74rem;color:var(--muted);margin-top:.5rem">Unlocks: Wallet Roaster & Analyser (mock)</div>
+  </div>
+  <div class="card" style="padding:1.1rem">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:600">🏆 Hidden Leaderboard</div>
+      <a href="#" class="btn ghost" style="font-size:.75rem" onclick="alert('Mockup: /lb?key=XXXX');return false">Open ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HYPERLIQUID ============ -->
+<section class="sec" id="sec-hl" style="padding:1.25rem;max-width:980px;margin:0 auto">
+  <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:.4rem">Hyperliquid Tools</h2>
+  <div style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">Read-only · free API · paste any wallet address</div>
+  <div class="card" style="padding:1.1rem;margin-bottom:1rem">
+    <div style="font-weight:600;margin-bottom:.6rem">Wallet Analyser / Roaster</div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <input placeholder="0x… HL address" style="flex:1;min-width:200px;background:var(--card-alt);border:1px solid var(--border);border-radius:.6rem;padding:.55rem .8rem;color:#e2e8f0;font-size:.8rem;font-family:'JetBrains Mono'" value="0x9f3a…c21e">
+      <button class="btn" onclick="alert('Mockup: fetch clearinghouseState')">Analyse</button>
+      <button class="btn ghost" onclick="alert('Mockup: AI roast')">🔥 Roast</button>
+    </div>
+  </div>
+  <div class="card" style="padding:1.1rem">
+    <div style="font-weight:600;margin-bottom:.7rem">Leaderboard (Top Wallets)</div>
+    <table style="width:100%;font-size:.82rem;border-collapse:collapse">
+      <thead><tr style="color:var(--muted);text-align:left;font-size:.72rem"><th>Wallet</th><th>PnL</th><th>Win%</th><th>Copy</th></tr></thead>
+      <tbody id="lbRows"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Signal modal -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)this.classList.remove('act')">
+  <div class="modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem">
+      <h3 id="mTitle" style="font-weight:700;font-size:1.1rem"></h3>
+      <button class="btn ghost" style="padding:.3rem .7rem" onclick="document.getElementById('modalBg').classList.remove('act')">✕</button>
+    </div>
+    <div id="mBody"></div>
+    <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:.8rem;font-size:.78rem;color:var(--dim)">
+      <div style="margin-bottom:.5rem"><b>Did you take this trade?</b></div>
+      <div style="display:flex;gap:.5rem;margin-bottom:.8rem">
+        <button class="btn" style="flex:1" onclick="alert('Mockup: log take')">✓ Yes</button>
+        <button class="btn ghost" style="flex:1" onclick="alert('Mockup: log skip')">No</button>
+      </div>
+      <div style="margin-bottom:.4rem"><b>Rate:</b> 👍 82% &nbsp; 👎 18%</div>
+      <div style="font-size:.72rem;color:var(--muted)">73% of users took this · 82% found it useful (mock)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom nav -->
+<nav class="nav">
+  <a href="#" class="act" onclick="go('signals',this)"><span class="ico">⚡</span>Signals</a>
+  <a href="#" onclick="go('ta',this)"><span class="ico">📊</span>TA</a>
+  <a href="#" onclick="go('edu',this)"><span class="ico">📚</span>Edu</a>
+  <a href="#" onclick="go('profile',this)"><span class="ico">👤</span>Profile</a>
+  <a href="#" onclick="go('hl',this)"><span class="ico">💧</span>HL</a>
+</nav>
+
+<script>
+// ===== MOCK DATA (fake — do not use in production) =====
+var SIGNALS=[
+ {p:'BTCUSDT',d:'BUY',e:64200,s:61800,t:69800,rr:'1:2.8',tf:'4H',why:'Reclaimed weekly VWAP, bullish divergence on 4H RSI'},
+ {p:'ETHUSDT',d:'SELL',e:3120,s:3280,t:2840,rr:'1:2.1',tf:'1D',why:'Rejected at range high, bearish order block'},
+ {p:'SOLUSDT',d:'BUY',e:148.5,s:139,t:172,rr:'1:2.4',tf:'1H',why:'Lithium sweep + demand zone tap'},
+ {p:'SUIUSDT',d:'NEUTRAL',e:1.12,s:1.02,t:1.28,rr:'1:1.6',tf:'4H',why:'Consolidating — wait for breakout'},
+];
+var TA=[
+ {p:'BTCUSDT',v:'Bullish',d:'BUY',r1h:58,r1d:62},
+ {p:'ETHUSDT',v:'Bearish',d:'SELL',r1h:41,r1d:44},
+ {p:'SOLUSDT',v:'Bullish',d:'BUY',r1h:55,r1d:59},
+ {p:'BNBUSDT',v:'Neutral',d:'NEUTRAL',r1h:50,r1d:51},
+ {p:'XRPUSDT',v:'Bullish',d:'BUY',r1h:61,r1d:57},
+ {p:'LINKUSDT',v:'Neutral',d:'NEUTRAL',r1h:48,r1d:52},
+];
+var COURSES=[
+ {t:'SMC Foundations',c:'ICT',x:200,d:'Order blocks, FVG, liquidity'},
+ {t:'Risk Management 101',c:'Core',x:150,d:'Position sizing, R-multiple'},
+ {t:'Reading Order Flow',c:'Adv',x:300,d:'Delta, CVD, absorption'},
+];
+var LEADERS=[
+ {w:'0x9f3a…c21e',pnl:'+$1.2M',win:'71%'},{w:'0x1b7e…88af',pnl:'+$840K',win:'64%'},
+ {w:'0x4c20…d091',pnl:'+$610K',win:'68%'},{w:'0x77aa…3f5b',pnl:'+$402K',win:'59%'},
+];
+
+// ===== render =====
+function dir(p,d){return d==='BUY'?'buy':d==='SELL'?'sell':'neutral';}
+function sigCard(s){return '<div class="card"><div class="acc-bar '+(s.d==='BUY'?'green':s.d==='SELL'?'red':'')+'"></div>'+
+ '<div style="padding:1rem"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">'+
+ '<span class="font-mono" style="font-weight:700">'+s.p+'</span>'+
+ '<span class="pill '+(s.d==='BUY'?'buy':s.d==='SELL'?'sell':'neutral')+'">'+s.d+'</span></div>'+
+ '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;font-size:.78rem;font-family:\'JetBrains Mono\';margin-bottom:.7rem">'+
+ '<div>Entry <span class="accent">'+s.e+'</span></div><div>SL <span class="sell">'+s.s+'</span></div>'+
+ '<div>TP <span class="buy">'+s.t+'</span></div><div>R:R <b>'+s.rr+'</b></div></div>'+
+ '<button class="btn ghost" style="width:100%;font-size:.78rem" onclick="openSig(\''+s.p+'\')">View trade →</button></div></div>';}
+function renderSigs(){document.getElementById('sigGrid').innerHTML=SIGNALS.map(sigCard).join('');}
+function filt(el,f){document.querySelectorAll('#sec-signals .chip').forEach(c=>c.classList.remove('act'));el.classList.add('act');
+ document.getElementById('sigGrid').innerHTML=SIGNALS.filter(s=>f==='ALL'||s.d===f).map(sigCard).join('');}
+function openSig(p){var s=SIGNALS.find(x=>x.p===p);document.getElementById('mTitle').textContent=p+' · '+s.d;
+ document.getElementById('mBody').innerHTML='<div class="font-mono" style="font-size:.82rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.8rem">'+
+ '<div>Entry <span class="accent">'+s.e+'</span></div><div>SL <span class="sell">'+s.s+'</span></div>'+
+ '<div>TP <span class="buy">'+s.t+'</span></div><div>TF <b>'+s.tf+'</b></div></div>'+
+ '<div style="background:var(--card-alt);border:1px solid var(--border);border-radius:.6rem;padding:.7rem;font-size:.82rem;color:var(--dim);margin-bottom:.8rem">'+s.why+'</div>'+
+ '<iframe src="https://s3.tradingview.com/widgetembed/?symbol=BYBIT:'+p+'&interval=240&theme=dark" style="width:100%;height:200px;border:0;border-radius:.6rem"></iframe>'+
+ '<div style="font-size:.7rem;color:var(--muted);margin-top:.4rem">TradingView embed (mock)</div>';
+ document.getElementById('modalBg').classList.add('act');}
+function renderTA(){document.getElementById('taGrid').innerHTML=TA.map(t=>'<div class="card"><div style="padding:.9rem">'+
+ '<div style="display:flex;justify-content:space-between;margin-bottom:.5rem"><span class="font-mono" style="font-weight:700">'+t.p+'</span>'+
+ '<span class="pill '+(t.d==='BUY'?'buy':t.d==='SELL'?'sell':'neutral')+'">'+t.d+'</span></div>'+
+ '<div style="font-size:.8rem;margin-bottom:.5rem">'+t.v+'</div>'+
+ '<div style="font-size:.72rem;color:var(--dim);font-family:\'JetBrains Mono\'">RSI 1H '+t.r1h+' · 1D '+t.r1d+'</div></div></div>').join('');}
+function renderEdu(){document.getElementById('eduGrid').innerHTML=COURSES.map(c=>'<div class="card"><div style="padding:1rem">'+
+ '<div style="font-weight:600;margin-bottom:.3rem">'+c.t+'</div>'+
+ '<div style="font-size:.76rem;color:var(--dim);margin-bottom:.6rem">'+c.d+'</div>'+
+ '<div style="display:flex;justify-content:space-between;font-size:.74rem"><span class="pill neutral">'+c.c+'</span><span class="accent" style="font-weight:700">+'+c.x+' XP</span></div></div></div>').join('');}
+function renderStreak(){var h='';for(var i=0;i<14;i++){h+='<span class="streak-dot'+(i<12?' on':'')+'">'+(i<12?'✓':'')+'</span>';}document.getElementById('streak').innerHTML=h;}
+function renderLB(){document.getElementById('lbRows').innerHTML=LEADERS.map(l=>'<tr style="border-top:1px solid var(--border)">'+
+ '<td class="font-mono">'+l.w+'</td><td class="buy">'+l.pnl+'</td><td>'+l.win+'</td>'+
+ '<td><button class="btn ghost" style="font-size:.68rem;padding:.25rem .5rem" onclick="alert(\'Mockup: follow '+l.w+'\')">Follow</button></td></tr>').join('');}
+function renderTicker(){var syms=['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT','SUIUSDT','LINKUSDT','DOGEUSDT'];
+ var html=syms.map(s=>'<span style="font-size:.8rem"><b class="font-mono">'+s+'</b> <span class="'+(Math.random()>.5?'buy':'sell')+' font-mono">'+(Math.random()*5-2).toFixed(2)+'%</span></span>').join('');
+ document.getElementById('tk').innerHTML=html+html;}
+function go(s,el){document.querySelectorAll('.sec').forEach(x=>x.classList.remove('act'));
+ document.getElementById('sec-'+s).classList.add('act');
+ document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('act'));el.classList.add('act');window.scrollTo(0,0);}
+function checkin(){alert('Mockup: +25 XP check-in');}
+function clock(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toUTCString().slice(17,25)+' UTC';}
+renderSigs();renderTA();renderEdu();renderStreak();renderLB();renderTicker();clock();setInterval(clock,5000);
+</script>
+</body>
+</html>
